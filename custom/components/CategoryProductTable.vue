@@ -19,7 +19,12 @@
                     'bg-base-200': index % 2 == 1,
                 }">
                     <th>{{ product.number }}</th>
-                    <td>{{ product.name }}</td>
+                    <td>
+                        <a :href="'/de/product/' + product.slug + '.html'">
+                            {{ product.name }}
+                        </a>
+                    </td>
+                    <th>{{ product.price.toFixed(2) }} €</th>
                     <td></td>
                     <td class="flex justify-end space-x-3">
                         <a :href="'/de/product/tshirt-bowling-1.html'" :class="{
@@ -50,15 +55,18 @@ import { onMounted, ref } from "vue";
 const store = usePocketbaseStore();
 const { url } = storeToRefs(store);
 const pb = new PocketBase(url.value);
+const products: Ref = ref([]);
 
-const { products, identifier } = defineProps({
+onMounted(async () => {
+    products.value = (await pb.collection('products').getList(1, 25, {
+        filter: 'category="' + identifier + '"'
+    })).items
+});
+
+const { identifier } = defineProps({
     identifier: {
-        type: Number,
+        type: String,
         required: true,
-    },
-    products: {
-        type: Array,
-        required: true,
-    },
+    }
 });
 </script>

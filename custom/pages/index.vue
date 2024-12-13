@@ -11,7 +11,7 @@
             </div>
             <div v-for="item in items" :key="item.id" class="col-span-6 md:col-span-3">
                 <a href="/de/category/food" class="btn btn-primary btn-block">{{ item.name }}</a>
-                <CategoryProductTable :products="item.expand.products" />
+                <CategoryProductTable :identifier="item.id" />
             </div>
         </div>
     </section>
@@ -39,10 +39,6 @@ onMounted(() => {
 });
 
 const load = async function () {
-    items.value = (await pb.collection('categories').getList(1, 10, {
-        expand: 'products'
-    })).items;
-
-    items.expand.products = items.expand.products.sort((a, b) => b.number - a.number);
+    items.value = (await pb.collection('categories').getList(1, 10)).items;
 }
 </script>

@@ -6,13 +6,13 @@
       </a>
       <nav class="ul flex list-none space-x-6 text-sm font-bold text-white items-center mr-6">
         <li class="">
-          <a href="/">Hallo Welt</a>
+          <a href="/category/döner.html">Döner</a>
         </li>
         <li class="">
-          <a href="/">Hallo Welt</a>
+          <a href="/">Burger</a>
         </li>
         <li class="">
-          <a href="/">Hallo Welt</a>
+          <a href="/">Pizza</a>
         </li>
       </nav>
     </section>
