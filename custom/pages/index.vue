@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div v-for="item in items" :key="item.id" class="col-span-6 md:col-span-3">
-                <a href="/de/category/food" class="btn btn-primary btn-block">{{ item.name }}</a>
+                <a :href="'/de/category/' + item.slug+'.html'" class="btn btn-primary btn-block">{{ item.name }}</a>
                 <CategoryProductTable :identifier="item.id" />
             </div>
         </div>
